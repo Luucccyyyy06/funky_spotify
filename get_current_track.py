@@ -1,5 +1,6 @@
 import requests
 import tokens
+import time
 from rich import print
 
 SPOTIFY_GET_CURRENT_TRACK_URL = "https://api.spotify.com/v1/me/player"
@@ -31,8 +32,11 @@ def get_current_track(SPOTIFY_ACCESS_TOKEN):
 
 
 def main():
-    current_track_info = get_current_track(tokens.ACCESS_TOKEN)
-    print(current_track_info)
+    while True:
+        current_track_info = get_current_track(tokens.ACCESS_TOKEN)
+        print(current_track_info)
+
+        # time.sleep(10)
 
 
 if __name__ == "__main__":
