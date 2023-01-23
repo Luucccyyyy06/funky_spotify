@@ -56,9 +56,6 @@ def get_playlist_analysis(SPOTIFY_ACCESS_TOKEN):
     return resp_json
 
 
-def analyse_a_playlist(SPOTIFY_ACCESS_TOKEN, playlist_id):
-    playlist_analysis = get_playlist_analysis(
-        SPOTIFY_ACCESS_TOKEN=tokens.ACCESS_TOKEN,
-        playlist_id=playlist_id,
-    )
+def analyse_a_playlist(SPOTIFY_ACCESS_TOKEN):
+    playlist_analysis = get_playlist_analysis(SPOTIFY_ACCESS_TOKEN=tokens.ACCESS_TOKEN)
     return pd.DataFrame(playlist_analysis)

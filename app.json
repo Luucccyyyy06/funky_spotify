@@ -1,0 +1,7 @@
+{
+    "name": "Analyse Spotify Playlists",
+    "description": "Enter your playlist ID and look at the audio features of each song :-)",
+    "index": "",
+    "port": "8050",
+    "files": []
+}
