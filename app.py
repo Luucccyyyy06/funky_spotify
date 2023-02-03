@@ -2,12 +2,19 @@ from dash import *
 from dash.dependencies import Input, Output
 import plotly.express as px
 import json
-import track_analysis
-import tokens
 import pandas as pd
+import src.playlist_analysis
+from pathlib import Path
 
-analysed_playlist = track_analysis.analyse_a_playlist(
-    SPOTIFY_ACCESS_TOKEN=tokens.ACCESS_TOKEN
+token_file = (
+    Path.home()
+    / "projects/funky_friday/funky_spotify/.config"
+    / "spotify_api_token.txt"
+)
+token = token_file.read_text().strip()
+
+analysed_playlist = src.playlist_analysis.track_analysis.analyse_a_playlist(
+    SPOTIFY_ACCESS_TOKEN=token
 )
 
 # print(analysed_playlist["audio_features"])
@@ -16,7 +23,6 @@ tracks = [track for track in analysed_playlist["audio_features"]]
 features = pd.DataFrame.from_dict(tracks)
 
 fig = px.bar(features["danceability"], title="Lucy and Josh Emo Extravaganza Playlist")
-# fig = px.bar(features, title="Lucy and Josh Emo Extravaganza Playlist")
 
 app = Dash(__name__)
 

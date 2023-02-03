@@ -1,9 +1,17 @@
 import requests
-import tokens
 import pandas as pd
 from rich import print
 import plotly.express as px
 import plotly.graph_objects as go
+
+from pathlib import Path
+
+token_file = (
+    Path.home()
+    / "projects/funky_friday/funky_spotify/.config"
+    / "spotify_api_token.txt"
+)
+token = token_file.read_text().strip()
 
 # Playlist analysis variables
 playlist_id = "41umvo7Y8wLLeCnyi2hsnv"
@@ -57,5 +65,5 @@ def get_playlist_analysis(SPOTIFY_ACCESS_TOKEN):
 
 
 def analyse_a_playlist(SPOTIFY_ACCESS_TOKEN):
-    playlist_analysis = get_playlist_analysis(SPOTIFY_ACCESS_TOKEN=tokens.ACCESS_TOKEN)
+    playlist_analysis = get_playlist_analysis(SPOTIFY_ACCESS_TOKEN=token)
     return pd.DataFrame(playlist_analysis)

@@ -6,7 +6,17 @@ from rich import print
 SPOTIFY_GET_CURRENT_TRACK_URL = "https://api.spotify.com/v1/me/player"
 
 
-def get_current_track(SPOTIFY_ACCESS_TOKEN):
+def get_current_track(SPOTIFY_ACCESS_TOKEN: str) -> dict:
+    """
+    Uses the Spotify API endpoint SPOTIFY_GET_CURRENT_TRACK_URL to access the current
+    track playing from the users account. Note: means you must have a track playing.
+
+    Args:
+        SPOTIFY_ACCESS_TOKEN (str): the OAuth token to access the Spotify API (generated from their Dev Console)
+
+    Returns:
+        current_track_info (dict): a dictionary containing the track ID, track name, artist name, and a link to the song url.
+    """
     response = requests.get(
         SPOTIFY_GET_CURRENT_TRACK_URL,
         headers={
